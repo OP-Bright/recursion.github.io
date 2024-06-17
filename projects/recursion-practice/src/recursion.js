@@ -465,8 +465,45 @@ var alternateSign = function(array, output = [], even = true) {
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
   
+/*
+var numToText = function(str, obj = {}) {
+  str = str.replaceAll("0", "zero");
+  str = str.replaceAll("1", "one");
+  str = str.replaceAll("2", "two");
+  str = str.replaceAll("3", "three");
+  str = str.replaceAll("4", "four");
+  str = str.replaceAll("5", "five");
+  str = str.replaceAll("6", "six");
+  str = str.replaceAll("7", "seven");
+  str = str.replaceAll("8", "eight");
+  str = str.replaceAll("9", "nine");
+  return str
+};
+*/
+
+var numToText = function(str, output = '') {
+  if (str.length === 0) {
+    return output
+  }
+  let obj = {
+    0: 'zero',
+    1: 'one', 
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+  }
+  if (Object.keys(obj).includes(str[0])) {
+    output += Object.values(obj)[Object.keys(obj).indexOf(str[0])]
+  } else {
+    output += str[0]
+  }
+  return numToText(str.slice(1), output)
 };
 
 // *** EXTRA CREDIT ***
